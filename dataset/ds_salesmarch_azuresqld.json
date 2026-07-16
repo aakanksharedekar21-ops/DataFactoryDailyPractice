@@ -1,0 +1,17 @@
+{
+	"name": "ds_salesmarch_azuresqld",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azuresql_clintrial",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "raw",
+			"table": "sales_march"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
