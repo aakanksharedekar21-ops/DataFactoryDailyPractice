@@ -1,0 +1,38 @@
+{
+	"name": "ds_sqlserver_tables_parameter",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_devclintrial_project",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"pLsServerName": "@dataset",
+				"pLsDatabaseName": "@dataset().pDsServerName"
+			}
+		},
+		"parameters": {
+			"pDsServerName": {
+				"type": "string",
+				"defaultValue": "localhost\\SQLEXPRESS"
+			},
+			"pDsDatabaseName": {
+				"type": "string",
+				"defaultValue": "dev_clintrail_edc_src"
+			},
+			"pDsSchemaName": {
+				"type": "string",
+				"defaultValue": "edcsrcmetadata"
+			},
+			"pDsTableName": {
+				"type": "string",
+				"defaultValue": "srcEdcClintrailToLandControl"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "@dataset().pDsServerName",
+			"table": "@dataset().pDsServerName"
+		}
+	}
+}
