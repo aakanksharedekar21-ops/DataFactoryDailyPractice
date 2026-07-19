@@ -19,7 +19,7 @@
 			"trustServerCertificate": false,
 			"authenticationType": "Windows",
 			"userName": "AAKANKSHA\\HP",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyYWMwYmFhYi03NmJmLTQ1YjgtYWE3Yy1iMTgxODM1OWRhMDgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyZDBhYzFhMS1kZDc4LTQ0ZWYtODYxNy01ZTEwZmEyZjAyNTAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "shir-local-computer",
