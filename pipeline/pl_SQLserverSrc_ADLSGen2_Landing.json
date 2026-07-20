@@ -22,11 +22,43 @@
 					},
 					"dataset": {
 						"referenceName": "ds_sql_project_landing",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"pDsServerName": {
+								"value": "@pipeline().parameters.pPlServerName",
+								"type": "Expression"
+							},
+							"pDsDatabaseName": {
+								"value": "@pipeline().parameters.pPlDatabaseName",
+								"type": "Expression"
+							},
+							"pDsSchemaName": {
+								"value": "@pipeline().parameters.pPlSchemaName",
+								"type": "Expression"
+							},
+							"pDsTableName": {
+								"value": "@pipeline().parameters.pPlTableName",
+								"type": "Expression"
+							}
+						}
 					}
 				}
 			}
 		],
+		"parameters": {
+			"pPlServerName": {
+				"type": "string"
+			},
+			"pPlDatabaseName": {
+				"type": "string"
+			},
+			"pPlSchemaName": {
+				"type": "string"
+			},
+			"pPlTableName": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "dev_clintrail/SQLServerSrc_ADLSGen2Landing"
 		},
