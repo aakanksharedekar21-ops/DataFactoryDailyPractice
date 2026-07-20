@@ -117,7 +117,15 @@
 							"outputs": [
 								{
 									"referenceName": "ds_adls_clinical_dev_project",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"pDsContainerName": {
+											"value": "@item().LandingContainerName",
+											"type": "Expression"
+										},
+										"pDsFolderName": "@{concat(item().SrcSchemaName,'/',item().SrcTableName,'/ingest_date=',formatDateTime(utcNow(),'yyyy-MM-dd'))}",
+										"pDsFileName": "@{concat(item().SrcTableName, '_', formatDateTime(utcNow(),'yyyyMMddHHmmss'), '.parquet')}"
+									}
 								}
 							]
 						}
