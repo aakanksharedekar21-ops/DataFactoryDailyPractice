@@ -132,6 +132,8 @@
 						{
 							"name": "LookupGetMaxMetadata",
 							"type": "Lookup",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "Copydatasqlserver",
@@ -151,7 +153,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "SqlServerSource",
-									"sqlReaderQuery": "@concat('SELECT MAX([', coalesce(item().WatermarkColName,\n\n*MODIFIED_TS'),\n\n]) AS NewWatermark FROM', item().SrcSchema Name, '.',\n\nitem().SrcTableName)",
+									"sqlReaderQuery": {
+										"value": "@concat(\n    'SELECT MAX([',\n    coalesce(item().WatermarkColName, 'MODIFIED_TS'),\n    ']) AS NewWatermark FROM ',\n    item().SrcSchemaName,\n    '.',\n    item().SrcTableName\n)",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
@@ -182,6 +187,8 @@
 						{
 							"name": "StoredProcedureUpdtMxModifiedDt",
 							"type": "SqlServerStoredProcedure",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "LookupGetMaxMetadata",
@@ -233,20 +240,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"pPlServerName": {
-				"type": "string"
-			},
-			"pPlDatabaseName": {
-				"type": "string"
-			},
-			"pPlSchemaName": {
-				"type": "string"
-			},
-			"pPlTableName": {
-				"type": "string"
-			}
-		},
 		"folder": {
 			"name": "dev_clintrail/SQLServerSrc_ADLSGen2Landing"
 		},
