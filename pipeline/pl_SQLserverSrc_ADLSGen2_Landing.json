@@ -181,9 +181,18 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
+								"storedProcedureName": "[edcsrcmetadata].[usp_UpdateMxWatermark]",
 								"storedProcedureParameters": {
-									"undefined": {
-										"value": ""
+									"MetadataId": {
+										"value": "@item().MetadataId",
+										"type": "Int32"
+									},
+									"NewWatermarkValue": {
+										"value": {
+											"value": "@activity('LookupGetMaxMetadata').output.firstRow.NewWatermark",
+											"type": "Expression"
+										},
+										"type": "Datetime"
 									}
 								}
 							},
