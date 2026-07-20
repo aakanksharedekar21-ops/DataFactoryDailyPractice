@@ -24,24 +24,13 @@
 						"referenceName": "ds_sql_project_landing",
 						"type": "DatasetReference",
 						"parameters": {
-							"pDsServerName": {
-								"value": "@pipeline().parameters.pPlServerName",
-								"type": "Expression"
-							},
-							"pDsDatabaseName": {
-								"value": "@pipeline().parameters.pPlDatabaseName",
-								"type": "Expression"
-							},
-							"pDsSchemaName": {
-								"value": "@pipeline().parameters.pPlSchemaName",
-								"type": "Expression"
-							},
-							"pDsTableName": {
-								"value": "@pipeline().parameters.pPlTableName",
-								"type": "Expression"
-							}
+							"pDsServerName": "localhost\\SQLEXPRESS",
+							"pDsDatabaseName": "dev_clintrail_edc_src",
+							"pDsSchemaName": "edcsrcmetadata",
+							"pDsTableName": "srcEdcClintrailToLandControl"
 						}
-					}
+					},
+					"firstRowOnly": false
 				}
 			}
 		],

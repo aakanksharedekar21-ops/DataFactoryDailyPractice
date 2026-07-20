@@ -3,7 +3,17 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_devclintrial_project",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"pLsServerName": {
+					"value": "@dataset().pDsServerName",
+					"type": "Expression"
+				},
+				"pLsDatabaseName": {
+					"value": "@dataset().pDsDatabaseName",
+					"type": "Expression"
+				}
+			}
 		},
 		"parameters": {
 			"pDsServerName": {
@@ -21,6 +31,16 @@
 		},
 		"annotations": [],
 		"type": "SqlServerTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().pDsSchemaName",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().pDsTableName",
+				"type": "Expression"
+			}
+		}
 	}
 }
