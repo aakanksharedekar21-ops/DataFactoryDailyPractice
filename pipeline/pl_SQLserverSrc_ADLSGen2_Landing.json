@@ -128,6 +128,79 @@
 									}
 								}
 							]
+						},
+						{
+							"name": "LookupGetMaxMetadata",
+							"type": "Lookup",
+							"dependsOn": [
+								{
+									"activity": "Copydatasqlserver",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 3,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"sqlReaderQuery": "@concat('SELECT MAX([', coalesce(item().WatermarkColName,\n\n*MODIFIED_TS'),\n\n]) AS NewWatermark FROM', item().SrcSchema Name, '.',\n\nitem().SrcTableName)",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "ds_sql_project_landing",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "StoredProcedureUpdtMxModifiedDt",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "LookupGetMaxMetadata",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 3,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureParameters": {
+									"undefined": {
+										"value": ""
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_devclintrial_project",
+								"type": "LinkedServiceReference",
+								"parameters": {
+									"pLsServerName": {
+										"value": "@item().SrcServerName",
+										"type": "Expression"
+									},
+									"pLsDatabaseName": {
+										"value": "@item().SrcDatabaseName",
+										"type": "Expression"
+									}
+								}
+							}
 						}
 					]
 				}
