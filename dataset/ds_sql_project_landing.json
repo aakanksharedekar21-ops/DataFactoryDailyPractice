@@ -1,0 +1,26 @@
+{
+	"name": "ds_sql_project_landing",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_devclintrial_project",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"pDsServerName": {
+				"type": "string"
+			},
+			"pDsDatabaseName": {
+				"type": "string"
+			},
+			"pDsSchemaName": {
+				"type": "string"
+			},
+			"pDsTableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
