@@ -67,7 +67,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "SqlServerSource",
-									"sqlReaderQuery": "@if(\n    equals(item().IngestionType,'Incremental'),\n    concat(\n        'SELECT * FROM ',\n        item().SrcSchemaName,\n        '.',\n        item().SrcTableName,\n        ' WHERE ',\n        coalesce(item().WatermarkColName,' '),\n        ' > ''',\n        coalesce(string(item().WatermarkColValue),' '),\n        ''''\n    ),\n    concat(\n        'SELECT * FROM ',\n        item().SrcSchemaName,\n        '.',\n        item().SrcTableName\n    )\n)",
+									"sqlReaderQuery": {
+										"value": "@if(\n    equals(item().IngestionType,'Incremental'),\n    concat(\n        'SELECT * FROM ',\n        item().SrcSchemaName,\n        '.',\n        item().SrcTableName,\n        ' WHERE ',\n        coalesce(item().WatermarkColName,' '),\n        ' > ''',\n        coalesce(string(item().WatermarkColValue),' '),\n        ''''\n    ),\n    concat(\n        'SELECT * FROM ',\n        item().SrcSchemaName,\n        '.',\n        item().SrcTableName\n    )\n)",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
@@ -132,8 +135,6 @@
 						{
 							"name": "LookupGetMaxMetadata",
 							"type": "Lookup",
-							"state": "Inactive",
-							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "Copydatasqlserver",
@@ -187,8 +188,6 @@
 						{
 							"name": "StoredProcedureUpdtMxModifiedDt",
 							"type": "SqlServerStoredProcedure",
-							"state": "Inactive",
-							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "LookupGetMaxMetadata",
@@ -209,7 +208,10 @@
 								"storedProcedureName": "[edcsrcmetadata].[usp_UpdateMxWatermark]",
 								"storedProcedureParameters": {
 									"MetadataId": {
-										"value": "@item().MetadataId",
+										"value": {
+											"value": "@item().MetadataId",
+											"type": "Expression"
+										},
 										"type": "Int32"
 									},
 									"NewWatermarkValue": {
