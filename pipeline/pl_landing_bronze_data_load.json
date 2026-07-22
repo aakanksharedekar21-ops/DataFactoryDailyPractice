@@ -36,8 +36,6 @@
 			{
 				"name": "ForEach_Landing_File",
 				"type": "ForEach",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Lookup_bronze_Control_Table",
