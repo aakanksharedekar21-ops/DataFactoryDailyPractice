@@ -107,10 +107,6 @@
 										"value": "@item().TgtTableName",
 										"type": "Expression"
 									},
-									"scdType": {
-										"value": "@item().ScdType",
-										"type": "Expression"
-									},
 									"businessKey": {
 										"value": "@item().BusinessKey",
 										"type": "Expression"
