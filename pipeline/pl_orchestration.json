@@ -32,7 +32,15 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://prod-12.centralindia.logic.azure.com:443/workflows/91f68944efc64ab0a0ba81cd94b97227/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=Qj6gBDdViYK8nnAC55nXBiT0qYuDbrvZRTw3YAFG_lo",
+					"body": {
+						"value": "{\n    \"status\" \"Success\",\n    \"PipeLineName\" : \"@{pipeline().Pipeline}\",\n    \"startTime\" : \"@{pipeline().TriggerTime}\",\n    \"EndTime\" : \"@{utcNow()}\"\n}",
+						"type": "Expression"
+					}
+				}
 			},
 			{
 				"name": "Web2",
@@ -52,7 +60,15 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://prod-12.centralindia.logic.azure.com:443/workflows/91f68944efc64ab0a0ba81cd94b97227/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=Qj6gBDdViYK8nnAC55nXBiT0qYuDbrvZRTw3YAFG_lo",
+					"body": {
+						"value": "{\n    \"status\" \"failed\",\n    \"PipeLineName\" : \"@{pipeline().Pipeline}\",\n    \"ErrorMsg\" : \"@{activity('Execute_orchestration').Error.Message},\n}",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"folder": {
