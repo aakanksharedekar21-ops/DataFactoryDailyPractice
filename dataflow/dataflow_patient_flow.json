@@ -31,6 +31,12 @@
 				},
 				{
 					"name": "rank1"
+				},
+				{
+					"name": "aggregate1"
+				},
+				{
+					"name": "splitwisestate"
 				}
 			],
 			"scriptLines": [
@@ -68,7 +74,12 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
 				"select1 rank(asc(city, true),",
-				"     output(rnk_city as long)) ~> rank1"
+				"     output(rnk_city as long)) ~> rank1",
+				"rank1 aggregate(groupBy(city),",
+				"     city_wise_cnt = count()) ~> aggregate1",
+				"derivedColumn1 split(ERROR_FUNCTION(''),",
+				"     ERROR_FUNCTION(''),",
+				"     disjoint: false) ~> splitwisestate@(DJ, Other, GJ)"
 			]
 		}
 	}
