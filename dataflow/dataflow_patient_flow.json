@@ -22,6 +22,12 @@
 				},
 				{
 					"name": "derivedColumn1"
+				},
+				{
+					"name": "surrogateKey1"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -41,7 +47,23 @@
 				"patientdata filter(gender == 'M') ~> filterGen",
 				"filterGen sort(asc(state_code, true),",
 				"     asc(city, true)) ~> sort1",
-				"sort1 derive(patient_id = currentDate()) ~> derivedColumn1"
+				"sort1 derive(patient_id = currentDate()) ~> derivedColumn1",
+				"derivedColumn1 keyGenerate(output(pt_sk as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> surrogateKey1",
+				"surrogateKey1 select(mapColumn(",
+				"          first_name_patient = first_name,",
+				"          patient_id,",
+				"          last_name,",
+				"          gender,",
+				"          date_of_birth,",
+				"          state_code,",
+				"          city,",
+				"          phone,",
+				"          pt_sk",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
 			]
 		}
 	}
